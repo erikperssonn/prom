@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/index.css">
+    <script type = "module" src="../javascript/index.js"></script> 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <title>Promillen</title>
+</head>
+<body> 
+    <nav style = "display: flex; justify-content: center; background-color: aliceblue;">
+        <p style = "font-size: 50px; margin-top: 5px; color: lightseagreen; margin-bottom: 10px;">
+            <strong>Promillen</strong>
+        </p>
+    </nav>
+    <h1>
+        <div id = "chart" style = "background-color: white;">
+            CHARTEN
+            <canvas id="myChart" width="400" height="200"></canvas> <!-- Add a canvas element for the chart -->
+
+        </div>
+
+        <div id = "consListDiv" style = "background-color: blueviolet;">
+            Konsumption
+            <div id = "consList">
+                <div class = "consItem">
+                    <p>
+                        <strong>Dryck 1</strong>
+                    </p>
+                    <p class = "consText">
+                        Alkoholhalt: 4.5%
+                    </p>
+                    <p class = "consText">
+                        Volym: 33cl
+                    </p>
+                    <p class = "consText">
+                        Tid: 22:05
+                    </p>
+                </div>
+
+            </div>
+        </div>
+
+        <div id = "add" style = "background-color: aquamarine;">
+            
+            <div id = "addpanel" style = "background-color: beige;">
+                
+                <div id ="addButton" class = "addButton">
+                    <p style = "margin-top: 1px;">
+                        Lägg till
+                    </p>
+                </div>
+            </div>
+        </div>
+    </h1>
+    <!-- Pop-up screen -->
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <span class="close">&times;</span>
+            <p> <strong>Lägg in din alkohol konsumption</strong></p>
+            <div style = "border: solid; border-radius: 5px; border-width: 1px;">
+                <div class = "input">
+                    Skriv in alkoholhalt på dryck: <input type = "text" id = "alkoholhalt" placeholder = "Ex: 4.5"> %
+                 </div>
+                 <div class = "input">
+                     Skriv volym konsumerad <strong>(cl)</strong>: <input type = "text" id = "volym" placeholder = "Ex: 33"> centiliter
+                   </div>
+                 <div class = "input">
+                   Skriv in klockslag på konsumption: Klockan  <input type = "text" id = "tid" placeholder = "Ex: 22:05">
+                 </div>
+                 <div class = "input">
+                    Namn/notering <strong>(valfritt)    </strong>  
+                    <div>
+                        <input type = "text" id = "namn" placeholder = "namn">
+                    </div>
+                    
+                 </div>
+                 <div class = "input">
+                    Dryckestid <strong>(valfritt)(minuter)</strong> <input type = "text" id = "dryckestid" placeholder = "Ex: 20 (standard: 20)"> minuter
+                 </div>
+            </div>
+            <div style = "margin-top: 10px; display: flex; justify-content: flex-end;">
+                <div id = "avbryt" class = "closeLaggTill" style = "background-color: red;">
+                    <p style = "margin-top: 5px;">Avbryt</p>
+                </div>
+                <div id = "laggTill" class = "closeLaggTill" style = "background-color: green;">
+                    <p style = "margin-top: 5px;">Lägg till</p>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</body>
+</html>
