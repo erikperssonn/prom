@@ -7,21 +7,38 @@
 .consText{
     font-size: 16px;
     margin-left: 5px;
+    margin-top: 1px;
+    margin-bottom: 3px;
 }
 
-.consItem{
-    background-color: blanchedalmond;
-    margin-bottom: 10px;
-    border-radius: 5px;
-    border: 3px solid #888;
+.consNameText{
+    font-size: 22px;
+    margin-left: 5px;
+    font-weight: bold;
+    margin-bottom: 5px;
+
 }
+
+
 
 .removeCon{
     background-color: red;
-    width: 70;
-    height: 35;
+    width: 80%;
+    height: 35px;
     border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-self: center; /* Center the remove button horizontally */
+    margin-top: 2px;
 
+}
+
+.removeConText{
+    color: black;
+    font-size: 25px;
+    font-weight: bold;
+    margin-top: 5px;
+    
 }
 
 
@@ -81,7 +98,7 @@
 .addButton{
     background-color: green;
     border-radius: 5px;
-    width: 150px;
+    width: 300px;
     height: 40px;
     display: flex;
     justify-content: center;
@@ -89,6 +106,107 @@
 }
 
 .addButton:hover,
-.closeLaggTill:hover {
+.closeLaggTill:hover, 
+.removeCon:hover,
+.removeConText:hover{
     cursor: pointer;
+    opacity: 0.8; /* Adjust the opacity as needed */
+
 }
+
+
+.errorPopup {
+    
+    position: relative;
+    padding: 10px;
+    border: 1px solid red;
+    background-color: #f8d7da;
+    color: #721c24;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.closeButtonPopUp{
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: bold;
+    margin-right: 10px; /* Adjust margin as needed */
+    color: #721c24;
+    text-decoration: none;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.errorText{
+    font-size: 12px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-right: 3px;
+    color: #721c24;
+    flex-grow: 1;
+}
+
+.infoText{
+    font-size: 16px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    margin: 5px 8px 5px 5px; /* Adjust margins as needed */
+
+    color: black;
+    
+}
+
+.infon{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    padding: 5px;
+    border: 1px solid black;
+    border-radius: 5px;
+
+}
+
+.rubriker{
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+    color: black;
+    align-self: flex-start; /* Align to the left */
+
+}
+
+.consListDiv{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.consItem{
+    background-color: blanchedalmond;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    border: 3px solid #888;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%; /* Ensure it takes up the full width */
+    padding: 5 px;
+    
+    
+}
+

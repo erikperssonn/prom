@@ -7,23 +7,50 @@
     <script type = "module" src="../javascript/index.js"></script> 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+
     <title>Promillen</title>
 </head>
 <body> 
     <nav style = "display: flex; justify-content: center; background-color: aliceblue;">
         <p style = "font-size: 50px; margin-top: 5px; color: lightseagreen; margin-bottom: 10px;">
-            <strong>Promillen</strong>
+            <strong>Promillenn</strong>
         </p>
     </nav>
     <h1>
         <div id = "chart" style = "background-color: white;">
-            CHARTEN
+            <p class = "rubriker">
+                Alkoholhalt i blodet
+            </p>
             <canvas id="myChart" width="400" height="200"></canvas> <!-- Add a canvas element for the chart -->
 
         </div>
 
-        <div id = "consListDiv" style = "background-color: blueviolet;">
-            Konsumption
+        <div id = "infon" class= "infon">
+            <p class = "rubriker">
+                Allmän info
+            </p>
+            <p class = "infoText">
+                Vikt: <input type = "text" id = "vikt" placeholder = "Ex: 70"> kg
+            </p>
+            <p class = "infoText">
+                Kön:
+                <input type="radio" id="male" name="gender" value="male">
+                <label for="male">Man</label>
+                <input type="radio" id="female" name="gender" value="female">
+                <label for="female">Kvinna</label>
+            </p>
+            <p class = "infoText">
+                Hur mycket åt du innan du började dricka? (valfritt) (1-5, 5 mycket)
+                <input type="range" id="scale" name="scale" min="1" max="5" value="3" oninput="this.nextElementSibling.value = this.value">
+                <output>3</output>
+            </p>
+            
+        </div>
+
+        <div id = "consListDiv" class = "consListDiv">
+            <p class = "rubriker">
+                Alkohol konsumtion
+            </p>
             <div id = "consList">
                 <div class = "consItem">
                     <p>
@@ -39,13 +66,13 @@
                         Tid: 22:05
                     </p>
                 </div>
-
+ 
             </div>
         </div>
 
         <div id = "add" style = "background-color: aquamarine;">
             
-            <div id = "addpanel" style = "background-color: beige;">
+            <div id = "addpanel" style = "background-color: beige; display: flex; justify-content: center;">
                 
                 <div id ="addButton" class = "addButton">
                     <p style = "margin-top: 1px;">
@@ -54,10 +81,12 @@
                 </div>
             </div>
         </div>
+
+        
     </h1>
     <!-- Pop-up screen -->
     <div id="popup" class="popup">
-        <div class="popup-content">
+        <div class="popup-content" id = "popup-content">
             <span class="close">&times;</span>
             <p> <strong>Lägg in din alkohol konsumption</strong></p>
             <div style = "border: solid; border-radius: 5px; border-width: 1px;">
