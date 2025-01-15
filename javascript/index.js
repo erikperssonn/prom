@@ -2,35 +2,79 @@
 
 
 import { ConsList } from "./ConsList.js";
-import { Consumption } from "./Consumption.js";
 import { AllmanInfo } from "./allmanInfo.js";
+import { ButtonFunctions } from "./ButtonFunctions.js";
+import { LaggTill } from "./LaggTill.js";
 import { RegexChecks } from "./RegexChecks.js";
 
 
+class Main{
+    document;
 
+    allmanInfo;
+    consList;
+    buttonFunctions;
+    laggTillClass;
+    regexChecks;
 
-const allmanInfo = new AllmanInfo(1, 3, "und");
+    haveGivenInfo;
 
-const consList = new ConsList(allmanInfo);
+    h1;
+    add;
+    addpanel;
+    addButton;
+    closeBtn;
+    popup;
+    popupContent;
+    laggTill;
+    avbryt;
+    consListElement;
+    vikt;
+    scale;
 
-let haveGivenInfo = false;
+    ctx;
+    myChart;
 
-document.addEventListener("DOMContentLoaded", function() {
-    const h1 = document.querySelector("h1");
-    const add = h1.querySelector("#add");
-    const addpanel = add.querySelector("#addpanel");
-    const addButton = addpanel.querySelector("#addButton");
-    const closeBtn = document.querySelector(".close");
-    const popup = document.getElementById("popup");
-    const popupContent = document.querySelector("#popup-content");
-    const laggTill = document.querySelector("#laggTill");
-    const avbryt = document.querySelector("#avbryt");
-    const consListElement = document.querySelector("#consList");
-    const vikt = document.querySelector("#vikt");
-    const scale = document.querySelector("#scale");
+    //färdig
+    constructor(document){
+        this.allmanInfo = new AllmanInfo(1, 3, "und");
+        this.consList = new ConsList(this.allmanInfo);
+        this.haveGivenInfo = false;
+        this.buttonFunctions = new ButtonFunctions(this); 
+        this.laggTillClass = new LaggTill(this);
+        this.regexChecks = new RegexChecks();
+        this.document = document;
+        
+        console.log("constructor completed");
 
-    const ctx = document.getElementById('myChart').getContext('2d');
-    const myChart = new Chart(ctx, {
+    }
+    //färdig
+    initElements(){
+        this.document.addEventListener("DOMContentLoaded", () => {
+            console.log("DOMContentLoaded");
+            this.h1 = this.document.querySelector("h1");
+            this.add = this.h1.querySelector("#add");
+            this.addpanel = this.add.querySelector("#addpanel");
+            this.addButton = this.addpanel.querySelector("#addButton");
+            this.closeBtn = this.document.querySelector(".close");
+            this.popup = this.document.getElementById("popup");
+            this.popupContent = this.document.querySelector("#popup-content");
+            this.laggTill = this.document.querySelector("#laggTill");
+            this.avbryt = this.document.querySelector("#avbryt");
+            this.consListElement = this.document.querySelector("#consList");
+            this.vikt = this.document.querySelector("#vikt");
+            this.scale = this.document.querySelector("#scale");
+
+            console.log("initElements completed");
+            this.addFunctionsToButtons();
+            this.initChart();
+        });
+    }
+
+    //färdig
+    initChart(){
+        this.ctx = this.document.getElementById('myChart').getContext('2d');
+        this.myChart = new Chart(this.ctx, {
         type: 'line',
         data: {
             labels: [],
@@ -64,261 +108,71 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         }
     });
+        console.log("initChart completed");
+    }
 
-    const genderInputs = document.querySelectorAll('input[name="gender"]');
-    genderInputs.forEach(input => {
-        input.addEventListener('change', function() {
-            if (input.checked) {
-                allmanInfo.setGender(input.value);
-                console.log(allmanInfo.getGender());
-            }
+    //färdig
+     createParagraphAndAppendText(text, input){
+        const p = this.document.createElement("p");
+        p.className = "consText";
+        p.textContent = `${text} ${input}`;
+    
+        return p;
+    
+    } 
+    
+    //färdig
+     createNameParagraphAndAppendText(text, input){
+        const p = this.document.createElement("p");
+        p.className = "consNameText";
+        p.textContent = `${text} ${input}`;
+    
+        return p;
+    
+    }
 
-            updateChart(consList, myChart);
+    //färdig
+    updateChart(consList, myChart){
+        if(consList.getList().length > 0){
+            consList.fixEverything();
+            myChart.data.labels = consList.getTimes();
+            myChart.data.datasets[0].data = consList.getValues();
+            myChart.update();
+        }
+    }
+
+    //färdig
+    clearContent(element) {
+        element.innerHTML = "";
+    }
+
+    addFunctionsToButtons(){
+        
+        const genderInputs = this.document.querySelectorAll('input[name="gender"]');
+        genderInputs.forEach(input => {
+            input.addEventListener('change', () => this.buttonFunctions.genderChange(input));
         });
-    });
-
-    vikt.addEventListener('input', function() {
-        allmanInfo.setVikt(vikt.value);
-        haveGivenInfo = true;
-        console.log(allmanInfo.getVikt());
-        updateChart(consList, myChart);
-    });
-
-    scale.addEventListener('input', function() {
-        allmanInfo.setScale(scale.value);
-        console.log(allmanInfo.getScale());
-        updateChart(consList, myChart);
-    });
-
-
-    addButton.addEventListener('click', function() {
-        console.log("click");
-    });
-
-    add.addEventListener('click', function() {
-        console.log("click");
-    });
-
-    addButton.addEventListener('click', function() {
-        if(haveGivenInfo === false){ 
-            console.log("Du måste fylla i din vikt först");
-            alert("Du måste fylla i din vikt först");
-        } else {
-            popup.style.display = "block";
-        }
-    });
-
-    closeBtn.addEventListener('click', function() {
-        const errorPopup = document.querySelector('.errorPopup');
-        if (errorPopup) {
-            errorPopup.remove();
-        }
-        
-        popup.style.display = "none";
-    });
-
-    avbryt.addEventListener('click', function() {
-        popup.style.display = "none";
-        console.log("avbryt");
-        const errorPopup = document.querySelector('.errorPopup');
-        if (errorPopup) {
-            errorPopup.remove();
-        }
-    });
-
-    laggTill.addEventListener('click', function(){
-        
-        
-            console.log("lägg till");
-            const alkoholhalt = document.querySelector("#alkoholhalt").value;
-            const tid = document.querySelector("#tid").value;
-            const volym = document.querySelector("#volym").value;
-            const namn = document.querySelector("#namn").value;
-            const dryckestid = document.querySelector("#dryckestid").value;
-            
-            const errorStr = checkConsRegex(alkoholhalt, volym, tid, namn, dryckestid);
-            
-            if(errorStr.length > 0){
-                console.log("fel inputs");
-                const errorPopUp = createErrorPopup(errorStr);
-                popupContent.appendChild(errorPopUp);
-            } 
-            
-            else {
-                consList.addItem(new Consumption(alkoholhalt, volym, tid, namn, dryckestid, allmanInfo));
-                consListFix(consList, consListElement, myChart);
-                
-                const errorPopup = document.querySelector('.errorPopup');
-                if (errorPopup) {
-                    errorPopup.remove();
-                }
-                popup.style.display = "none";
-
-                
-
-                //console.log(myChart.datasets[0].data);
-                console.log(consList.getValues() + "values");
-            
-            }
-        
-    });     
     
-
+        this.vikt.addEventListener('input', () => this.buttonFunctions.viktChange());
+        this.scale.addEventListener('input', () => this.buttonFunctions.scaleChange());
     
-
+        this.addButton.addEventListener('click', () => this.buttonFunctions.addConsButton_FromMainScreen());
+        this.closeBtn.addEventListener('click', () => this.buttonFunctions.closePopupX_OnAddPopUp());
     
-});
-
-
-
-
-
-function clearContent(element) {
-    element.innerHTML = "";
-}
-
-
-function createConsItem(cons, consListElement, myChart){
-    const alkoholhalt = cons.getAlko();
-    const volym = cons.getVolym();
-    const tid = cons.getTid();
-    const namn = cons.getNamn();
-    const dryckestid = cons.getDryckestid();
-
-    console.log(tid);
+        this.laggTill.addEventListener('click', () => this.laggTillClass.laggTill_FromPopUp());
+        this.avbryt.addEventListener('click', () => this.buttonFunctions.avbrytBtn_OnAddPopUp());
     
-    const consDiv = document.createElement("div");
-    consDiv.className = "consItem";
-    consDiv.id = `consItem-${consList.getList().indexOf(cons)}`;
-
-    const index = consList.getList().indexOf(cons) +1;
-    const drycknamn = namn !== "" ? namn : "Dryck";
-    const dryckestidTid = dryckestid !== "" ? dryckestid : "-"
-    
-
-    const dryckNbrP = createNameParagraphAndAppendText(drycknamn, `(${index})`);
-    const alkoholP = createParagraphAndAppendText("Alkoholhalt: ", alkoholhalt);
-    const volymP = createParagraphAndAppendText("Volym: ", volym);
-    const tidP = createParagraphAndAppendText("Tidpunkt: ", tid);
-    const dryckestidP = createParagraphAndAppendText("Dryckestid: ", dryckestidTid);
-
-    consDiv.appendChild(dryckNbrP);
-    consDiv.appendChild(alkoholP);
-    consDiv.appendChild(volymP);
-    consDiv.appendChild(tidP);
-    consDiv.appendChild(dryckestidP)
-
-    const removeButton = document.createElement("div");
-    removeButton.className = "removeCon";
-
-    const removePtext = document.createElement("p");
-    removePtext.className = "removeConText";
-    removePtext.textContent = "Ta bort";
-    removeButton.appendChild(removePtext);
-   
-    removeButton.addEventListener('click', function(){
-        consList.removeItem(cons);
-        consListFix(consList, consListElement, myChart);
-    })
-
-    consDiv.appendChild(removeButton);
-
-    const editButton = document.createElement("div");
-    editButton.className = "editCon";
-
-    const editPtext = document.createElement("p");
-    editPtext.className = "removeConText";
-    editPtext.textContent = "Ändra";
-    editButton.appendChild(editPtext);
-   
-    editButton.addEventListener('click', function(){
-        editCon(cons);
-        consListFix(consList, consListElement, myChart);
-    })
-
-    consDiv.appendChild(removeButton);
-
-
-
-    return consDiv;
-
-
-}
-
-function createParagraphAndAppendText(text, input){
-    const p = document.createElement("p");
-    p.className = "consText";
-    p.textContent = `${text} ${input}`;
-
-    return p;
-
-}
-
-function createNameParagraphAndAppendText(text, input){
-    const p = document.createElement("p");
-    p.className = "consNameText";
-    p.textContent = `${text} ${input}`;
-
-    return p;
-
-}
-
-function consListFix(consList, consListElement, myChart){
-    consList.sortByTime();
-
-    if (consListElement) {
-        clearContent(consListElement);
+        console.log("finished adding functions to buttons");
     }
 
-    for(const cons of consList.getList()){
-        const item = createConsItem(cons, consListElement, myChart);
-        consListElement.appendChild(item);
-    }
-    console.log("added item");
-
-    updateChart(consList, myChart);
-
-}
-
-
-function createErrorPopup(errorStr){
-    const errorPopup = document.createElement("div");
-    errorPopup.className = "errorPopup";
-
-    const closeButton = document.createElement("span");
-    closeButton.className = "closeButtonPopUp";
-    closeButton.textContent = "X";
-
-    errorPopup.appendChild(closeButton);
-
-    errorStr.forEach(error => {
-        const errorText = document.createElement("p");
-        errorText.className = "errorText";
-        errorText.textContent = error;
-        errorPopup.appendChild(errorText);
-    });
-
-    
-
-    closeButton.addEventListener("click", () => {
-        errorPopup.remove();
-    });
-
-    
-    
-
-    
-
-    return errorPopup;
-}
-
-function updateChart(consList, myChart){
-    if(consList.getList().length > 0){
-        consList.fixEverything();
-        myChart.data.labels = consList.getTimes();
-        myChart.data.datasets[0].data = consList.getValues();
-        myChart.update();
+    run(){
+        this.initElements();
+        console.log("run completed");
     }
 }
 
-function editCon(cons){
+const main = new Main(document);
+
+main.run();
+
+

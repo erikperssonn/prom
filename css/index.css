@@ -19,7 +19,16 @@
 
 }
 
-
+.editCon{
+    background-color:blue;
+    width: 80%;
+    height: 35px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-self: center; /* Center the remove button horizontally */
+    margin-top: 2px;
+}
 
 .removeCon{
     background-color: red;
@@ -98,11 +107,21 @@
 .addButton{
     background-color: green;
     border-radius: 5px;
-    width: 300px;
+    width: 40%;
     height: 40px;
     display: flex;
     justify-content: center;
 
+}
+
+.scrapeButton{
+    background-color: yellow;
+    border-radius: 5px;
+    width: 40%;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    margin-left: 20px;
 }
 
 .addButton:hover,

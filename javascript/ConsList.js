@@ -103,8 +103,4 @@ export class ConsList{
     }
 
 
-
-
-
-
 }
