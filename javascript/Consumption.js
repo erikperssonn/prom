@@ -1,8 +1,6 @@
 "use strict"
 
 
-
-
 export class Consumption{
     #alkoholhalt;
     #volym;
@@ -14,8 +12,9 @@ export class Consumption{
     #values;
     #finalValues;
     #date;
+    #main;
 
-    constructor(alkoholhalt, volym, tid, namn, dryckestid, allmanInfo){
+    constructor(alkoholhalt, volym, tid, namn, dryckestid, allmanInfo, main){
         this.#alkoholhalt = alkoholhalt;
         this.#volym = volym;
         this.#tid = tid;
@@ -24,6 +23,7 @@ export class Consumption{
         this.#allmanInfo = allmanInfo;
         this.#values = [];
         this.#finalValues = [];
+        this.#main = main;
 
 
     }
@@ -33,10 +33,10 @@ export class Consumption{
     }
 
     fixStartDate(){
-        let date = new Date();
-        date.setHours(this.#tid.split(":")[0]);
-        date.setMinutes(this.#tid.split(":")[1]);
-        this.#date = date;
+        let datee = new Date();
+        datee.setHours(this.#tid.split(":")[0]);
+        datee.setMinutes(this.#tid.split(":")[1]);
+        this.#date = datee;
     }
 
     getAlko(){
@@ -67,9 +67,6 @@ export class Consumption{
         return this.roundToNearest5(dryckesTid);
     }
 
-    fixAbsorption(){
-        return this.#allmanInfo.getAbsorption();
-    }
 
     functionen(){
         this.#values = [];
@@ -85,7 +82,7 @@ export class Consumption{
 
         const dividedAlco = totAlcoWeight / dryckesTidDivider;
 
-        
+        let totalAlco = 0;
 
         for(let i = 0; i < dryckesTidDivider; i++){
             const time = new Date(this.#date);
@@ -95,8 +92,10 @@ export class Consumption{
                 const time2 = new Date(time);
                 time2.setMinutes(time.getMinutes() + j * 5);
                 
-                const alco = totAlcoWeight/(absorbtionDivider * dryckesTidDivider);
+                const alco = dividedAlco/(absorbtionDivider);
                 const bac = alco / (this.#allmanInfo.getVikt() * this.#allmanInfo.getGenderVal());
+
+                totalAlco += alco;
                 
                 const insertObj = {
                     time: time2,
@@ -166,7 +165,7 @@ export class Consumption{
         }
         console.log(this.#finalValues.length);
 
-
+        console.log("totalAlco: " + totalAlco);
 
 
     }
@@ -179,4 +178,71 @@ export class Consumption{
         return this.#finalValues;
     }
 
+
+    functionen2(){
+        const nbrOfDrinks = this.#main.consList.getList().length;
+
+        this.#values = [];
+
+        this.fixStartDate();
+
+        const totAlcoWeight = this.#alkoholhalt * this.#volym * this.#alcoholWeight * 0.01;
+
+        let nbrIndelningar = 0;
+
+        
+        nbrIndelningar = Number(this.#dryckestid) + Number(this.#allmanInfo.getScale() * 15 );
+        console.log(this.#dryckestid  + this.#allmanInfo.getScale() * 15);
+       
+
+        let totalAlco = 0;
+        let totalAdd = 0;
+        const startTime = new Date(this.#date);
+        console.log("startTime: -------------------------------------------- " + startTime);
+        for(let i = 0; i < nbrIndelningar; i++){
+            
+            const time = new Date(startTime);
+            time.setMinutes(time.getMinutes() + i);
+            const alco = totAlcoWeight / nbrIndelningar;
+            totalAlco += alco;
+            let bac = alco / (this.#allmanInfo.getVikt() * this.#allmanInfo.getGenderVal());
+            if(this.#values.length > 0){
+                bac += this.#values[this.#values.length - 1].bac - 0.015 * 1/(60*nbrOfDrinks);
+                totalAdd = this.#values[this.#values.length - 1].bac;
+            }
+            const insertObj = {
+                time: time,
+                bac: bac,
+                displayTime: `${time.getHours().toString().padStart(2, '0')}:${time.getMinutes().toString().padStart(2, '0')}`
+            }
+            //console.log("bac: " + bac + "   " + time);
+
+            this.#values.push(insertObj);
+        }
+
+        while(this.#values[this.#values.length -1].bac > 0.0000000){
+                
+            const insertObj = this.#values[this.#values.length - 1];
+            const [hours, minutes] = insertObj.displayTime.split(':').map(Number);
+            const newTime = new Date();
+            newTime.setHours(hours, minutes+1, 0, 0);
+            //newTime.setMinutes(newTime.getMinutes() + 1);
+            //timeSet.add(`${newTime.getHours().toString().padStart(2, '0')}:${newTime.getMinutes().toString().padStart(2, '0')}`);
+            const bac = insertObj.bac - 0.015 * 1/(60*nbrOfDrinks);
+            const newBac = bac  > 0 ? bac : 0;
+            const newObj = {
+                time: newTime,
+                bac: newBac,
+                displayTime: `${newTime.getHours().toString().padStart(2, '0')}:${newTime.getMinutes().toString().padStart(2, '0')}`
+            }
+            this.#values.push(newObj);
+        }
+
+        console.log("totalAlco: " + totalAlco);
+        console.log("totalAdd: " + totalAdd);
+    }
+
+    getValues2(){
+        return this.#values;
+    }
 }

@@ -1,5 +1,7 @@
 "use strict"
 
+
+
 export class ConsList{
     #list;
     #allmanInfo;
@@ -50,7 +52,7 @@ export class ConsList{
         return min;
     }
 
-    fixEverything(){
+    fixEverythingdalig(){
         let allValues = [];
         this.#values = [];
         this.#times = [];
@@ -101,6 +103,72 @@ export class ConsList{
         //return this.#values.map(value => value.displayTime);
         return this.#times;
     }
+
+    fixEverything(){
+        this.#values = [];
+        this.#times = [];
+        let allValues = [];
+
+        let timeSet = new Set();
+
+        this.#list.forEach(item => {
+            item.functionen2();
+            for(const value of item.getValues2()){
+                timeSet.add(value.displayTime);
+                allValues.push(value);
+            }
+        });
+
+        console.log(this.#values.length + "   All values1" );
+
+        let k = 0;
+
+        timeSet.forEach(time => {
+                const timeValues = allValues.filter(value => value.displayTime === time);
+                let totalBac = 0;
+                timeValues.forEach(value => {
+                    totalBac += value.bac;
+                    console.log("added");
+                });
+                //if(this.#values.length > 0){
+                //    totalBac = totalBac + this.#values[this.#values.length - 1].bac;
+                //}
+                totalBac = totalBac - 0.015 * 1/60;
+                const finalValue = {
+                    time: time,
+                    bac: totalBac
+                    
+                }
+                k = k + 1;
+                this.#values.push(finalValue);
+                //console.log("BAC: " + finalValue.bac +  "   " + finalValue.time);
+            });
+
+            console.log(this.#values.length + "   All values2" +  "   k = " + k);
+
+            //while(this.#values[this.#values.length -1].bac > 0.0000000){
+            //    
+            //    const insertObj = this.#values[this.#values.length - 1];
+            //    const [hours, minutes] = insertObj.time.split(':').map(Number);
+            //    const newTime = new Date();
+            //    newTime.setHours(hours, minutes+1, 0, 0);
+            //    //newTime.setMinutes(newTime.getMinutes() + 1);
+            //    timeSet.add(`${newTime.getHours().toString().padStart(2, '0')}:${newTime.getMinutes().toString().padStart(2, '0')}`);
+            //    const bac = insertObj.bac - 0.015 * 1/60;
+            //    const newBac = bac  > 0 ? bac : 0;
+            //    const newObj = {
+            //        time: `${newTime.getHours().toString().padStart(2, '0')}:${newTime.getMinutes().toString().padStart(2, '0')}`,
+            //        bac: newBac,
+            //        
+            //    }
+            //    this.#values.push(newObj);
+            //}
+//
+            
+            console.log(this.#values.length + "   All values3" );
+            this.#times = Array.from(timeSet);
+    }
+
 
 
 }

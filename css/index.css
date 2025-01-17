@@ -1,3 +1,6 @@
+body {
+    font-family: 'Arial', sans-serif; /* Replace 'Arial' with your desired font */
+}
 
 .consList{
     display: none;
@@ -107,10 +110,12 @@
 .addButton{
     background-color: green;
     border-radius: 5px;
-    width: 40%;
+    width: 80%;
     height: 40px;
     display: flex;
     justify-content: center;
+    margin-top: 10px;
+    border: 2px solid darkgreen;
 
 }
 
@@ -204,17 +209,17 @@
 
 }
 
-.consListDiv{
+.consListDiv {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
+    justify-content: space-between;
     border: 1px solid black;
     border-radius: 5px;
     padding: 5px;
+    
 }
 
-.consItem{
+.consItem {
     background-color: blanchedalmond;
     margin-bottom: 5px;
     border-radius: 5px;
@@ -222,10 +227,13 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    align-items: flex-start;
-    width: 100%; /* Ensure it takes up the full width */
-    padding: 5 px;
-    
-    
+    padding: 5px;
 }
 
+.consList{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
+    padding: 5px;
+}

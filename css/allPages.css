@@ -1,0 +1,53 @@
+body {
+    font-family: 'Arial', sans-serif;
+}
+
+.navBar {
+    background-color: #f8f9fa;
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+}
+
+.titleDiv {
+    margin-bottom: 10px;
+}
+
+.titleP {
+    font-size: 36px;
+    font-weight: bold;
+    margin: 0;
+    margin-bottom: 10px;
+}
+
+.unorderedList {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.hyperLinkDivs {
+    margin: 0 15px;
+}
+
+.hyperLinkDivButtons {
+    text-decoration: none;
+    color: #333;
+    font-size: 18px;
+    padding: 7px 40px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+    transition: background-color 0.3s, color 0.3s;
+    width: 50px; /* Set a fixed width */
+    text-align: center; /* Center the text */
+    display: inline-block; /* Ensure the width is applied */
+    
+}
+
+.hyperLinkDivButtons:hover {
+    background-color: #007bff;
+    color: #fff;
+}

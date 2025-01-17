@@ -67,8 +67,4 @@ export class ButtonFunctions{
         this.main.laggTillClass.consListFix_MainPage(this.main.consList, this.main.consListElement, this.main.myChart);
     }
 
-
-
-
-
 }

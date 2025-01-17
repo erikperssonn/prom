@@ -97,7 +97,7 @@ export class LaggTill{
              this.main.popupContent.appendChild(errorPopUp);
          } 
          else {
-             this.main.consList.addItem(new Consumption(alkoholhalt, volym, tid, namn, dryckestid, this.main.allmanInfo));
+             this.main.consList.addItem(new Consumption(alkoholhalt, volym, tid, namn, dryckestid, this.main.allmanInfo, this.main));
              this.consListFix_MainPage(this.main.consList, this.main.consListElement, this.main.myChart);
              
              const errorPopup = this.main.document.querySelector('.errorPopup');
