@@ -1,6 +1,7 @@
 import { RegexChecks } from "./RegexChecks.js";
 import { Consumption } from "./Consumption.js";
 
+
 export class LaggTill{
 
     main;
@@ -17,6 +18,8 @@ export class LaggTill{
         const volym = this.main.document.querySelector("#volym").value;
         const namn = this.main.document.querySelector("#namn").value;
         const dryckestid = this.main.document.querySelector("#dryckestid").value;
+
+        console.log(tid + " " + alkoholhalt + " " + volym + " " + namn + " " + dryckestid + "------------------------------");
         
         const errorStr = this.main.regexChecks.checkConsRegex(alkoholhalt, volym, tid, namn, dryckestid);
         
@@ -97,7 +100,9 @@ export class LaggTill{
              this.main.popupContent.appendChild(errorPopUp);
          } 
          else {
-             this.main.consList.addItem(new Consumption(alkoholhalt, volym, tid, namn, dryckestid, this.main.allmanInfo, this.main));
+            const consumption = new Consumption(alkoholhalt, volym, tid, namn, dryckestid, this.main.allmanInfo, this.main)
+             this.main.consList.addItem(consumption);
+             this.main.locStorage.addConsumption(consumption);
              this.consListFix_MainPage(this.main.consList, this.main.consListElement, this.main.myChart);
              
              const errorPopup = this.main.document.querySelector('.errorPopup');
@@ -108,6 +113,8 @@ export class LaggTill{
              
              //console.log(myChart.datasets[0].data);
              console.log(this.main.consList.getValues() + "values");
+
+
          
          }
     }
@@ -146,10 +153,12 @@ export class LaggTill{
         if (consListElement) {
             this.main.clearContent(consListElement);
         }
-    
-        for(const cons of consList.getList()){
-            const item = this.createConsItem(cons, consListElement, myChart);
-            consListElement.appendChild(item);
+        if(consList.getList().length > 0){
+            for(const cons of consList.getList()){
+                console.log("tid " + cons.getTid() + " alkoholhalt " + cons.getAlko() + " volym " + cons.getVolym());
+                const item = this.createConsItem(cons, consListElement, myChart);
+                consListElement.appendChild(item);
+            }
         }
         console.log("added item");
     

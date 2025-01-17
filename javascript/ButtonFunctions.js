@@ -24,6 +24,7 @@ export class ButtonFunctions{
         console.log(this.main.allmanInfo.getVikt());
         this.main.updateChart(this.main.consList, this.main.myChart);
         console.log("viktChange");
+        this.main.locStorage.saveVikt(this.main.allmanInfo.getVikt());
     }
 
      scaleChange(){
@@ -65,6 +66,14 @@ export class ButtonFunctions{
     removeConsItemFromList(cons){
         this.main.consList.removeItem(cons);
         this.main.laggTillClass.consListFix_MainPage(this.main.consList, this.main.consListElement, this.main.myChart);
+        this.main.fixConsListElementIfEmpty();
+    }
+
+    removeAllButton(){
+        this.main.locStorage.removeConsumptionsFromLocStorage();
+        const emptyArr = [];
+        this.main.consList.addEntireList(emptyArr);
+        this.main.fixConsListElementIfEmpty();
     }
 
 }

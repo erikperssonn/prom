@@ -7,12 +7,14 @@ export class ConsList{
     #allmanInfo;
     #values;
     #times;
+    #main;
     
 
-    constructor(allmanInfo){
+    constructor(allmanInfo, main){
         this.#list = [];
         this.#allmanInfo = allmanInfo;
         this.#values = [];
+        this.#main = main;
 
     }
 
@@ -24,12 +26,18 @@ export class ConsList{
         return this.#list;
     }
 
+    addEntireList(list){
+        this.#list = list;
+        this.#main.laggTillClass.consListFix_MainPage(this, this.#main.consListElement, this.#main.myChart);
+    }
+
     sortByTime() {
         this.#list.sort((a, b) => a.getCleanTime() - b.getCleanTime());
     }
 
     removeItem(item) {
         this.#list = this.#list.filter(i => i !== item);
+        this.#main.locStorage.removeConsumption(item);
     }
 
     getMaxTime(){

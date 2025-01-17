@@ -6,6 +6,7 @@ import { AllmanInfo } from "./allmanInfo.js";
 import { ButtonFunctions } from "./ButtonFunctions.js";
 import { LaggTill } from "./LaggTill.js";
 import { RegexChecks } from "./RegexChecks.js";
+import { LocStorage } from "./LocStorage.js";
 
 
 class Main{
@@ -16,6 +17,7 @@ class Main{
     buttonFunctions;
     laggTillClass;
     regexChecks;
+    locStorage;
 
     haveGivenInfo;
 
@@ -31,19 +33,22 @@ class Main{
     consListElement;
     vikt;
     scale;
+    removeAllButton;
 
     ctx;
     myChart;
 
     //färdig
     constructor(document){
-        this.allmanInfo = new AllmanInfo(1, 3, "und");
-        this.consList = new ConsList(this.allmanInfo);
-        this.haveGivenInfo = false;
+        this.haveGivenInfo = localStorage.getItem("vikt") !== null ? true : false;
+
+        this.allmanInfo = this.haveGivenInfo ? new AllmanInfo(localStorage.getItem("vikt"), 3, "und") : new AllmanInfo(1, 3, "und");
+        this.consList = new ConsList(this.allmanInfo, this);
         this.buttonFunctions = new ButtonFunctions(this); 
         this.laggTillClass = new LaggTill(this);
         this.regexChecks = new RegexChecks();
         this.document = document;
+        this.locStorage = new LocStorage(this);
         
         console.log("constructor completed");
 
@@ -64,10 +69,13 @@ class Main{
             this.consListElement = this.document.querySelector("#consList");
             this.vikt = this.document.querySelector("#vikt");
             this.scale = this.document.querySelector("#scale");
+            this.removeAllButton = this.document.querySelector("#tabortAllt");
+
+            this.vikt.value = localStorage.getItem("vikt") !== null ? localStorage.getItem("vikt") : 0;
 
             console.log("initElements completed");
             this.addFunctionsToButtons();
-            this.initChart();
+            
         });
     }
 
@@ -101,6 +109,9 @@ class Main{
         }
     });
         console.log("initChart completed");
+
+        this.consList.addEntireList(this.locStorage.returnArrOfConsumptionsFromLocStorage());
+        this.fixConsListElementIfEmpty();
     }
 
     //färdig
@@ -153,12 +164,31 @@ class Main{
     
         this.laggTill.addEventListener('click', () => this.laggTillClass.laggTill_FromPopUp());
         this.avbryt.addEventListener('click', () => this.buttonFunctions.avbrytBtn_OnAddPopUp());
+
+        this.removeAllButton.addEventListener('click', () => this.buttonFunctions.removeAllButton());
     
         console.log("finished adding functions to buttons");
+
+        this.initChart();
+    }
+
+    fixConsListElementIfEmpty(){
+        if(this.consListElement.children.length === 0){
+            
+            const diven = this.document.createElement("div");
+            diven.className = "consItem";
+
+            const p = this.document.createElement("p");
+            p.className = "consNameText";
+            p.textContent = "Ingen konsumtion tillagd, lägg till konsumtion.";
+            diven.appendChild(p);
+
+            this.consListElement.appendChild(diven);
+        }
     }
 
     run(){
-        this.initElements();
+        this.initElements();        
         console.log("run completed");
     }
 }

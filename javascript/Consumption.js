@@ -29,6 +29,7 @@ export class Consumption{
     }
 
     getCleanTime(){
+        console.log(this.#tid);
         return this.#tid.replace(":", "");
     }
 
@@ -78,7 +79,7 @@ export class Consumption{
         const dryckesTidDivider = this.fixDryckesTid(this.#dryckestid) / 5;
         const absorbtionDivider = (this.#allmanInfo.getScale() *15 +5) /5;
 
-        const startTime = this.fixTime(this.#tid);
+        //const startTime = this.fixTime(this.#tid);
 
         const dividedAlco = totAlcoWeight / dryckesTidDivider;
 

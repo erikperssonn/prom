@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/allPages.css">
     <script type = "module" src="../javascript/index.js"></script> 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
@@ -11,20 +12,19 @@
     <title>Promillen</title>
 </head>
 <body> 
-    <header>
+    <header class="navBar">
+        <div class="titleDiv">
+            <p class="titleP">Promillen</p>
+        </div>
         <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="om.html">Om</a></li>
+            <ul class="unorderedList">
+                <li class="hyperLinkDivs"><a class="hyperLinkDivButtons" href="index.html">Home</a></li>
+                <li class="hyperLinkDivs"><a class="hyperLinkDivButtons" href="om.html">Om</a></li>
             </ul>
         </nav>
     </header>
     <main>
-    <nav style = "display: flex; justify-content: center; background-color: aliceblue;">
-        <p style = "font-size: 50px; margin-top: 5px; color: lightslategray; margin-bottom: 10px;">
-            <strong>Promillen</strong>
-        </p>
-    </nav>
+    
     <h1>
         <div id = "chart" style = "background-color: white;">
             <p class = "rubriker">
@@ -60,12 +60,13 @@
             <p class = "rubriker">
                 Alkohol konsumtion
             </p>
+            <div id = "tabortAllt" class = "tabortAllt">
+                <p style = "font-size: 16px; margin-top: 7px;">
+                    <strong>Ta bort all konsumtion</strong>
+                </p>
+            </div>
             <div id = "consList" class = "consList">
-                <div class = "consItem">
-                    <p>
-                        <strong>Listan är tom, lägg till konsumtion</strong>
-                    
-                </div>
+                
  
             </div>
         </div>
