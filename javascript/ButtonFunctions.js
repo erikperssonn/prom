@@ -1,7 +1,3 @@
-//update chart
-
-
-
 export class ButtonFunctions{
 
     main;

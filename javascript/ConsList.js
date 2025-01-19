@@ -1,12 +1,5 @@
 "use strict"
 
-
-
-
-
-
-
-
 export class ConsList{
     #list;
     #allmanInfo;
@@ -36,80 +29,13 @@ export class ConsList{
         this.#main.laggTillClass.consListFix_MainPage(this, this.#main.consListElement, this.#main.myChart);
     }
 
-    sortByTime() {
-        this.#list.sort((a, b) => a.getCleanTime() - b.getCleanTime());
-    }
 
     removeItem(item) {
         this.#list = this.#list.filter(i => i !== item);
         this.#main.locStorage.removeConsumption(item);
     }
 
-    getMaxTime(){
-        let max = 0;
-        this.#list.forEach(item => {
-            if(item.getCleanTime() > max){
-                max = item.getCleanTime();
-            }
-        });
-        return max;
-    }
-
-    getMinTime(){
-        let min = 100000;
-        this.#list.forEach(item => {
-            if(item.getCleanTime() < min){
-                min = item.getCleanTime();
-            }
-        });
-        return min;
-    }
-
-    fixEverythingdalig(){
-        let allValues = [];
-        this.#values = [];
-        this.#times = [];
-        const timeSet = new Set();
-
-        this.#list.forEach(item => {
-            item.functionen();
-            item.getFinalValues().forEach(value => {
-                timeSet.add(value.displayTime);
-                allValues.push(value);
-            });
-        });
-
-        console.log(allValues.length + "   All values" );   
-        allValues.forEach(value => {
-            console.log("BAC: " + value.bac + "   " + value.displayTime);
-        });
-
-        
-
-        timeSet.forEach(time => {
-            const timeValues = allValues.filter(value => value.displayTime === time);
-            let totalBac = 0;
-            timeValues.forEach(value => {
-                totalBac += value.bac;
-            });
-            totalBac = totalBac -0.015 * 1/12;
-            const finalValue = {
-                time: time,
-                bac: totalBac
-            }
-            this.#values.push(finalValue);
-        });
-
-        this.#times = Array.from(timeSet);
-
-        console.log(this.#values.length);
-        this.#values.forEach(value => {
-            console.log("BACC: " + value.bac + "   " + value.time);
-        });
-
-
-    }
-
+    
     getValues(){
         return this.#values.map(value => value.displayBac);
     }
@@ -119,8 +45,8 @@ export class ConsList{
         return this.#times;
     }
 
-    fix0xtimesInSort(){
-
+    sortByTime() {
+        this.#list.sort((a, b) => a.getCleanTime() - b.getCleanTime());
     }
 
     fixEverything(){
@@ -175,12 +101,9 @@ export class ConsList{
                     alco = alco + Number(value.alco);
                     //console.log("added");
                 });
-                //if(this.#values.length > 0){
-                //    totalBac = totalBac + this.#values[this.#values.length - 1].bac;
-                //}
-                //totalBac = totalBac - 0.015 * 1/60;
+                
                 totalAlco += alco;
-                //console.log(typeof this.#allmanInfo.getVikt() + "   " + typeof this.#allmanInfo.getGender() + "   " + typeof alco + "   " + typeof k + "   " + typeof totalAlco);
+
                 console.log("Vikt: " + this.#allmanInfo.getVikt() + "  " + "Alco: " + alco + "  " + "Gender: " + this.#allmanInfo.getGender() + "  " + "k: " + k);
                 let resultBac = totalAlco /(Number(this.#allmanInfo.getVikt()) * Number(this.#allmanInfo.getGenderVal())) - 0.015 * 1/60 * k;
                 resultBac = resultBac > 0 ? resultBac : 0;
@@ -197,7 +120,6 @@ export class ConsList{
                     k = k + 1;
                 }
                 this.#values.push(finalValue);
-                //console.log("BAC: " + finalValue.bac +  "   " + finalValue.time);
             });
 
             for(let i = 0; i < this.#values.length; i++){
@@ -212,7 +134,6 @@ export class ConsList{
                 const [hours, minutes] = insertObj.time.split(':').map(Number);
                 const newTime = new Date();
                 newTime.setHours(hours, minutes+1, 0, 0);
-                //newTime.setMinutes(newTime.getMinutes() + 1);
                 const timeStr = `${newTime.getHours().toString().padStart(2, '0')}:${newTime.getMinutes().toString().padStart(2, '0')}`
                 const bac = insertObj.bac - 0.015 * 1/60;
                 const newBac = bac  > 0 ? bac : 0;
@@ -285,11 +206,7 @@ export class ConsList{
             
         }
         
-        //for(const time of newTimeSet){
-        //    const newTime = `${time.getHours().toString().padStart(2, '0')}:${time.getMinutes().toString().padStart(2, '0')}`;
-        //    console.log(newTime + "   newTime2");
-        //    newTimeSetArray.push(newTime);
-        //}
+        
 
         timeSetArray.sort((a, b) => {
             let [hoursA, minutesA] = a.split(':');

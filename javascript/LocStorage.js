@@ -6,8 +6,6 @@ export class LocStorage{
 
     constructor(main){
         this.#main = main;
-        
-
     }
 
     addConsumption(cons){

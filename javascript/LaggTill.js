@@ -10,7 +10,7 @@ export class LaggTill{
         this.main = main;
     }
 
-    //ok
+    
     laggTill_FromPopUp(){
         console.log("lägg till");
         const alkoholhalt = this.main.document.querySelector("#alkoholhalt").value;
@@ -20,10 +20,6 @@ export class LaggTill{
         const dryckestid = this.main.document.querySelector("#dryckestid").value;
 
         console.log(tid + " " + alkoholhalt + " " + volym + " " + namn + " " + dryckestid + "------------------------------");
-        
-        //if(alkoholhalt.contains(",")){
-        //    alkoholhalt.replace(",", ".");
-        //}
 
         const newTid = tid.replace(".", ":").replace(",", ":");
         const newAlkoholhalt = alkoholhalt.replace(",", ".");   
@@ -148,8 +144,6 @@ export class LaggTill{
             errorText.textContent = error;
             errorPopup.appendChild(errorText);
         });
-    
-        
     
         closeButton.addEventListener("click", () => {
             errorPopup.remove();
