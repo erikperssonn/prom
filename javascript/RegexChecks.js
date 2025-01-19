@@ -1,7 +1,7 @@
 export class RegexChecks{
 
     checkVolymRegex(volym){
-        const volymRegex = /^\d+$/;
+        const volymRegex = /^\d+([.,]\d+)?$/;
         return volymRegex.test(volym);
     }
     
@@ -11,12 +11,12 @@ export class RegexChecks{
     }
     
     checkTidRegex(tid){
-        const tidRegex = /^\d{2}[:.]\d{2}$/;
+        const tidRegex = /^\d{2}[:.,]\d{2}$/;
         return tidRegex.test(tid);
     }
     
     checkNamnRegex(namn){
-        const namnRegex = /^[a-zA-Z0-9\s]+$/;
+        const namnRegex = /^[a-zA-Z0-9\säöåÄÖÅ]+$/;
         return namnRegex.test(namn);
     }
     

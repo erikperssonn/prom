@@ -21,9 +21,21 @@ export class LaggTill{
 
         console.log(tid + " " + alkoholhalt + " " + volym + " " + namn + " " + dryckestid + "------------------------------");
         
-        const errorStr = this.main.regexChecks.checkConsRegex(alkoholhalt, volym, tid, namn, dryckestid);
+        //if(alkoholhalt.contains(",")){
+        //    alkoholhalt.replace(",", ".");
+        //}
+
+        const newTid = tid.replace(".", ":").replace(",", ":");
+        const newAlkoholhalt = alkoholhalt.replace(",", ".");   
+        const newVolym = volym.replace(",", ".");
+
+        console.log(newAlkoholhalt + "newAlkoholhalt-----------------------");
+
+        const errorStr = this.main.regexChecks.checkConsRegex(newAlkoholhalt, newVolym, newTid, namn, dryckestid);
+
+
         
-        this.createPopUpOrAdd(errorStr, alkoholhalt, volym, tid, namn, dryckestid, this.main.allmanInfo);
+        this.createPopUpOrAdd(errorStr, newAlkoholhalt, newVolym, newTid, namn, dryckestid, this.main.allmanInfo);
         
     }
 

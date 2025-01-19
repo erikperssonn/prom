@@ -19,12 +19,16 @@ export class ButtonFunctions{
     }
 
      viktChange(){
-        this.main.allmanInfo.setVikt(this.main.vikt.value);
-        this.main.haveGivenInfo = true;
-        console.log(this.main.allmanInfo.getVikt());
-        this.main.updateChart(this.main.consList, this.main.myChart);
-        console.log("viktChange");
-        this.main.locStorage.saveVikt(this.main.allmanInfo.getVikt());
+        if(this.main.vikt.value === "") {
+            this.main.allmanInfo.setVikt(50);
+        } else{
+            this.main.allmanInfo.setVikt(this.main.vikt.value);
+            this.main.haveGivenInfo = true;
+            console.log(this.main.allmanInfo.getVikt());
+            this.main.updateChart(this.main.consList, this.main.myChart);
+            console.log("viktChange");
+            this.main.locStorage.saveVikt(this.main.allmanInfo.getVikt());
+        }
     }
 
      scaleChange(){

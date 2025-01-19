@@ -58,9 +58,9 @@ class Main{
         this.document.addEventListener("DOMContentLoaded", () => {
             console.log("DOMContentLoaded");
             this.h1 = this.document.querySelector("h1");
-            this.add = this.h1.querySelector("#add");
-            this.addpanel = this.add.querySelector("#addpanel");
-            this.addButton = this.addpanel.querySelector("#addButton");
+            //this.add = this.h1.querySelector("#add");
+            this.addpanel = this.document.querySelector("#addpanel");
+            this.addButton = this.document.querySelector("#addButton");
             this.closeBtn = this.document.querySelector(".close");
             this.popup = this.document.getElementById("popup");
             this.popupContent = this.document.querySelector("#popup-content");
@@ -71,7 +71,7 @@ class Main{
             this.scale = this.document.querySelector("#scale");
             this.removeAllButton = this.document.querySelector("#tabortAllt");
 
-            this.vikt.value = localStorage.getItem("vikt") !== null ? localStorage.getItem("vikt") : 0;
+            this.vikt.value = localStorage.getItem("vikt") !== null ? localStorage.getItem("vikt") : null;
 
             console.log("initElements completed");
             this.addFunctionsToButtons();
@@ -184,6 +184,12 @@ class Main{
             diven.appendChild(p);
 
             this.consListElement.appendChild(diven);
+
+            const emptyArr = [];
+            this.myChart.data.labels = emptyArr;
+            this.myChart.data.datasets[0].data = emptyArr;
+            this.myChart.update();
+            console.log("emptyArr: " + emptyArr);
         }
     }
 

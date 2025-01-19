@@ -23,7 +23,7 @@ body {
 }
 
 .editCon{
-    background-color:blue;
+    background-color:rgb(47, 113, 255);
     width: 80%;
     height: 35px;
     border-radius: 5px;
@@ -110,8 +110,8 @@ body {
 .addButton{
     background-color: green;
     border-radius: 5px;
-    width: 80%;
-    height: 40px;
+    width: 85%;
+    height: 55px;
     display: flex;
     justify-content: center;
     margin-top: 10px;
@@ -241,7 +241,7 @@ body {
 
 .tabortAllt{
     background-color: red;
-    width: 80%;
+    width: 85%;
     height: 35px;
     border-radius: 5px;
     display: flex;
