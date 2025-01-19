@@ -8,14 +8,14 @@ body {
 }
 
 .consText{
-    font-size: 16px;
+    font-size: 20px;
     margin-left: 5px;
     margin-top: 1px;
     margin-bottom: 3px;
 }
 
 .consNameText{
-    font-size: 22px;
+    font-size: 24px;
     margin-left: 5px;
     font-weight: bold;
     margin-bottom: 5px;
@@ -92,15 +92,17 @@ body {
 .input{
     margin-top: 5px;
     margin-bottom: 5px;
+    font-size: 20px;
+    margin-left: 5px;
 
 }
 
 .closeLaggTill{
-    width: 80px;
-    height: 30px;
+    width: 100px;
+    height: 45px;
     border-radius: 5px;
     margin-left: 5px;
-    margin-right: 5px;
+    margin-right: 15px;
     display: flex;
     justify-content: space-around;
     
@@ -116,7 +118,7 @@ body {
     justify-content: center;
     margin-top: 10px;
     border: 2px solid darkgreen;
-
+    margin-bottom: 10px;
 }
 
 .scrapeButton{
@@ -176,7 +178,7 @@ body {
 }
 
 .infoText{
-    font-size: 16px;
+    font-size: 20px;
     margin-top: 10px;
     margin-bottom: 5px;
     margin: 5px 8px 5px 5px; /* Adjust margins as needed */
@@ -198,7 +200,7 @@ body {
 }
 
 .rubriker{
-    font-size: 20px;
+    font-size: 25px;
     font-weight: bold;
     margin-top: 10px;
     margin-bottom: 5px;

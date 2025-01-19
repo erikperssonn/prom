@@ -58,11 +58,11 @@ export class LaggTill{
         const dryckestidTid = dryckestid !== "" ? dryckestid : "-"
         
     
-        const dryckNbrP = this.main.createNameParagraphAndAppendText(drycknamn, `(${index})`);
-        const alkoholP = this.main.createParagraphAndAppendText("Alkoholhalt: ", alkoholhalt);
-        const volymP = this.main.createParagraphAndAppendText("Volym: ", volym);
-        const tidP = this.main.createParagraphAndAppendText("Tidpunkt: ", tid);
-        const dryckestidP = this.main.createParagraphAndAppendText("Dryckestid: ", dryckestidTid);
+        const dryckNbrP = this.main.createNameParagraphAndAppendText(drycknamn, `(${index})`, null);
+        const alkoholP = this.main.createParagraphAndAppendText("Alkoholhalt: ", alkoholhalt, " %");
+        const volymP = this.main.createParagraphAndAppendText("Volym: ", volym, " cl");
+        const tidP = this.main.createParagraphAndAppendText("Tidpunkt: ", tid, null);
+        const dryckestidP = this.main.createParagraphAndAppendText("Dryckestid: ", dryckestidTid, " min");
     
         consDiv.appendChild(dryckNbrP);
         consDiv.appendChild(alkoholP);

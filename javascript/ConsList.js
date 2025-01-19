@@ -111,7 +111,7 @@ export class ConsList{
     }
 
     getValues(){
-        return this.#values.map(value => value.bac);
+        return this.#values.map(value => value.displayBac);
     }
 
     getTimes(){
@@ -185,9 +185,11 @@ export class ConsList{
                 let resultBac = totalAlco /(Number(this.#allmanInfo.getVikt()) * Number(this.#allmanInfo.getGenderVal())) - 0.015 * 1/60 * k;
                 resultBac = resultBac > 0 ? resultBac : 0;
                 console.log("BAC: " + resultBac);
+                const displayBac = resultBac * 10;
                 const finalValue = {
                     time: time,
-                    bac: resultBac
+                    bac: resultBac,
+                    displayBac: displayBac
                     
                 }
                 
@@ -214,9 +216,11 @@ export class ConsList{
                 const timeStr = `${newTime.getHours().toString().padStart(2, '0')}:${newTime.getMinutes().toString().padStart(2, '0')}`
                 const bac = insertObj.bac - 0.015 * 1/60;
                 const newBac = bac  > 0 ? bac : 0;
+                const displayBac = newBac *10;
                 const newObj = {
                     time: timeStr,
                     bac: newBac,
+                    displayBac: displayBac
                 }
                 console.log("BAC: " + newObj.bac +  "   " + newObj.time);
                 this.#values.push(newObj);

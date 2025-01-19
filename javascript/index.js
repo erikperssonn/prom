@@ -115,10 +115,23 @@ class Main{
     }
 
     //färdig
-     createParagraphAndAppendText(text, input){
+     createParagraphAndAppendText(text, input, altTrailer){
         const p = this.document.createElement("p");
         p.className = "consText";
-        p.textContent = `${text} ${input}`;
+        //p.textContent = `${text} ${input}`;
+        
+        const inputDescription = this.document.createElement("strong");
+        inputDescription.textContent = text;
+
+        const inputText = this.document.createTextNode(` ${input}`);
+
+        p.appendChild(inputDescription);
+        p.appendChild(inputText);
+
+        if(altTrailer){
+            const trailer = this.document.createTextNode(altTrailer);
+            p.appendChild(trailer);
+        }
     
         return p;
     
@@ -129,7 +142,7 @@ class Main{
         const p = this.document.createElement("p");
         p.className = "consNameText";
         p.textContent = `${text} ${input}`;
-    
+
         return p;
     
     }
