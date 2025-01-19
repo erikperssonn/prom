@@ -13,7 +13,7 @@ export class AllmanInfo {
     }
 
     getVikt() {
-        return this.#vikt;
+        return Number(this.#vikt);
     }
 
     getScale() {
@@ -21,6 +21,7 @@ export class AllmanInfo {
     }
 
     getGender() {
+        
         return this.#gender;
     }
 
