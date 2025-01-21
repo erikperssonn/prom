@@ -44,10 +44,10 @@
                 Allmän info
             </p>
             <p class = "infoText">
-                Vikt: <input type = "text" id = "vikt" placeholder = "Ex: 70"> kg
+                <b>Vikt:</b> <input type = "text" id = "vikt" placeholder = "Ex: 70"> kg
             </p>
             <p class = "infoText">
-                Kön:
+                <b>Kön:</b>
                 <input type="radio" id="male" name="gender" value="male">
                 <label for="male">Man</label>
                 <input type="radio" id="female" name="gender" value="female">
@@ -63,9 +63,8 @@
 
         <div id = "consListDiv" class = "consListDiv">
             <p class = "rubriker">
-                Alkohol konsumtion
+                Alkoholkonsumption
             </p>
-            <div id = "addpanel" style = "background-color: white; display: flex; justify-content: center;">
                 
                 <div id ="addButton" class = "addButton">
                     <p style = "margin-top: 6px;">
@@ -73,7 +72,6 @@
                     </p>
                 </div>
                 
-            </div>
             
             <div id = "consList" class = "consList">
                 
@@ -81,7 +79,7 @@
             </div>
             <div id = "tabortAllt" class = "tabortAllt">
                 <p style = "font-size: 16px; margin-top: 7px;">
-                    <strong>Ta bort all konsumtion</strong>
+                    <strong>Ta bort all konsumption</strong>
                 </p>
             </div>
         </div>
@@ -94,33 +92,34 @@
     <div id="popup" class="popup">
         <div class="popup-content" id = "popup-content">
             <span class="close">&times;</span>
-            <p> <strong>Lägg in din alkohol konsumption</strong></p>
-            <div style = "border: solid; border-radius: 5px; border-width: 1px;">
+            <h2> <strong>Lägg till alkoholkonsumption</strong></h2>
+            <div style = "border: solid; border-radius: 5px; border-width: 1px; padding: 10px;">
                 <div class = "input">
-                    Skriv in alkoholhalt på dryck: <input type = "text" id = "alkoholhalt" placeholder = "Ex: 4.5"> %
+                    <b>Alkoholhalt (%): </b> <input type = "text" id = "alkoholhalt" placeholder = "Ex: 4.5">
                  </div>
                  <div class = "input">
-                     Skriv volym konsumerad <strong>(cl)</strong>: <input type = "text" id = "volym" placeholder = "Ex: 33"> centiliter
+                     <b>Volym (cl): </b> <input type = "text" id = "volym" placeholder = "Ex: 33">
                    </div>
                  <div class = "input">
-                   Skriv in klockslag på konsumption: <input type = "text" id = "tid" placeholder = "Ex: 22:05">
+                   <b>Klockslag (hh:mm):</b> <input type = "text" id = "tid" placeholder = "Ex: 22:05">
                  </div>
                  <div class = "input">
-                    Namn/notering <strong>(valfritt)    </strong>  
                     <div>
-                        <input type = "text" id = "namn" placeholder = "namn">
+                        <b>Namn</b> (valfritt) <b>:</b>
                     </div>
+
+                    <input type = "text" id = "namn" placeholder = "Ex. Gränges">
                     
                  </div>
                  <div class = "input">
-                    Dryckestid <strong>(valfritt)(minuter)</strong> <input type = "text" id = "dryckestid" placeholder = "Ex: 20 (standard: 20)"> minuter
+                    <b>Dryckestid (min): </b><input type = "text" id = "dryckestid" placeholder = "Ex: 20 (standard: 20)">
                  </div>
             </div>
-            <div style = "margin-top: 10px; display: flex; justify-content: flex-end;">
-                <div id = "avbryt" class = "closeLaggTill" style = "background-color: red;">
+            <div style = "margin-top: 10px; display: flex; justify-content: space-around;">
+                <div id = "avbryt" class = "closeLaggTill">
                     <p style = "margin-top: 10px; font-size: 20px;">Avbryt</p>
                 </div>
-                <div id = "laggTill" class = "closeLaggTill" style = "background-color: green;">
+                <div id = "laggTill" class = "closeLaggTill">
                     <p style = "margin-top: 10px; font-size: 20px;">Lägg till</p>
                 </div>
             </div>

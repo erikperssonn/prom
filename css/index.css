@@ -8,33 +8,40 @@ body {
 }
 
 .consText{
+    font-weight: normal;
     font-size: 20px;
     margin-left: 5px;
     margin-top: 1px;
     margin-bottom: 3px;
 }
 
-.consNameText{
-    font-size: 24px;
+.consNameText, .consNameTextEmpty{
+    font-size: 26px;
     margin-left: 5px;
     font-weight: bold;
     margin-bottom: 5px;
+    margin-top: 5px;
 
+}
+
+.consNameTextEmpty{
+    font-size: 22px;
 }
 
 .editCon{
-    background-color:rgb(47, 113, 255);
+    background-color:#598af4;
+    border: 1px solid #3571f3;
     width: 80%;
     height: 35px;
     border-radius: 5px;
     display: flex;
     justify-content: center;
     align-self: center; /* Center the remove button horizontally */
-    margin-top: 2px;
+    margin-top: 1px;
+    margin-bottom: 5px;
 }
 
 .removeCon{
-    background-color: red;
     width: 80%;
     height: 35px;
     border-radius: 5px;
@@ -42,14 +49,18 @@ body {
     justify-content: center;
     align-self: center; /* Center the remove button horizontally */
     margin-top: 2px;
+}
 
+.editCon, .removeCon {
+    margin-top: 5px;
+    padding-bottom: 5px;
 }
 
 .removeConText{
-    color: black;
+    color: white;
     font-size: 25px;
     font-weight: bold;
-    margin-top: 5px;
+    margin: 5px;
     
 }
 
@@ -92,33 +103,43 @@ body {
 .input{
     margin-top: 5px;
     margin-bottom: 5px;
-    font-size: 20px;
+    font-size: 18px;
     margin-left: 5px;
+    display: flex;
+    justify-content: space-between;
+}
 
+.input input{
+    width: 100px;
 }
 
 .closeLaggTill{
     width: 100px;
     height: 45px;
     border-radius: 5px;
-    margin-left: 5px;
-    margin-right: 15px;
+    margin: 0;
     display: flex;
     justify-content: space-around;
+    color: white;
+    font-weight: bold;
     
 
 }
 
 .addButton{
-    background-color: green;
     border-radius: 5px;
     width: 85%;
     height: 55px;
     display: flex;
     justify-content: center;
     margin-top: 10px;
-    border: 2px solid darkgreen;
     margin-bottom: 10px;
+}
+
+.addButton, #laggTill{
+    background-color: rgb(45, 185, 45);
+    border: 1px solid darkgreen;
+
 }
 
 .scrapeButton{
@@ -178,6 +199,7 @@ body {
 }
 
 .infoText{
+    font-weight: normal;
     font-size: 20px;
     margin-top: 10px;
     margin-bottom: 5px;
@@ -194,8 +216,7 @@ body {
     margin-top: 5px;
     margin-bottom: 20px;
     padding: 5px;
-    border: 1px solid black;
-    border-radius: 5px;
+    border: 1px solid #0000002e;
 
 }
 
@@ -203,7 +224,7 @@ body {
     font-size: 25px;
     font-weight: bold;
     margin-top: 10px;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
     margin-left: 5px;
     margin-right: 5px;
     color: black;
@@ -211,14 +232,23 @@ body {
 
 }
 
+#myChart{
+    margin-bottom: 20px;
+}
+
 .consListDiv {
     display: flex;
     flex-direction: column;
+    align-items: center;
     justify-content: space-between;
-    border: 1px solid black;
-    border-radius: 5px;
+    border: 1px solid #0000002e;
     padding: 5px;
-    
+    color: white;
+}
+
+.consListDiv > div {
+    width: 310px;
+    max-width: 310px;
 }
 
 .consItem {
@@ -230,6 +260,7 @@ body {
     flex-direction: column;
     justify-content: space-between;
     padding: 5px;
+
 }
 
 .consList{
@@ -238,11 +269,15 @@ body {
     justify-content: space-between;
     
     padding: 5px;
+    color: black;
 }
 
+.removeCon, .tabortAllt, #avbryt{
+    background-color: rgb(255, 53, 53);
+    border: 1px solid rgb(170, 24, 24);
+}
 
 .tabortAllt{
-    background-color: red;
     width: 85%;
     height: 35px;
     border-radius: 5px;
@@ -250,6 +285,7 @@ body {
     justify-content: center;
     align-self: center; /* Center the remove button horizontally */
     margin-top: 2px;
+    margin-bottom: 10px;
     transition: background-color 0.3s, color 0.3s;
 
 }
