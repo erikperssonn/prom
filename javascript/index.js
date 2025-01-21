@@ -192,8 +192,8 @@ class Main{
             diven.className = "consItem";
 
             const p = this.document.createElement("p");
-            p.className = "consNameText";
-            p.textContent = "Ingen konsumtion tillagd, lägg till konsumtion.";
+            p.className = "consNameTextEmpty";
+            p.textContent = "Ingen konsumtion tillagd.";
             diven.appendChild(p);
 
             this.consListElement.appendChild(diven);

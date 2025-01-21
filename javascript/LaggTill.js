@@ -90,7 +90,7 @@ export class LaggTill{
     
         const editPtext = this.main.document.createElement("p");
         editPtext.className = "removeConText";
-        editPtext.textContent = "Edit";
+        editPtext.textContent = "Redigera";
         editButton.appendChild(editPtext);
        
         editButton.addEventListener('click', () => {
